@@ -22,7 +22,7 @@ const Navbar = () => {
                 <Link to="/alltoy">All Toys</Link>
             </li>
             <li>
-                <Link to="/blogs">Blog</Link>
+                <Link to="/blogs"></Link>
             </li>
             {user?.email ? (
                 <>
@@ -59,7 +59,7 @@ const Navbar = () => {
                        {options}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">Martial Arts</a>
+                <Link to='/' className="btn btn-ghost normal-case text-xl">Martial Arts</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
