@@ -1,64 +1,62 @@
-{
-    "instructors": [
-        {
-            "image": "instructor1.jpg",
-            "name": "John Doe",
-            "email": "john.doe@example.com",
-            "classesTaken": 15
-        },
-        {
-            "image": "instructor2.jpg",
-            "name": "Jane Smith",
-            "email": "jane.smith@example.com",
-            "classesTaken": 12
-        },
-        {
-            "image": "instructor3.jpg",
-            "name": "Mike Johnson",
-            "email": "mike.johnson@example.com",
-            "classesTaken": 20
-        },
-        {
-            "image": "instructor4.jpg",
-            "name": "Sarah Thompson",
-            "email": "sarah.thompson@example.com",
-            "classesTaken": 8
-        },
-        {
-            "image": "instructor5.jpg",
-            "name": "David Wilson",
-            "email": "david.wilson@example.com",
-            "classesTaken": 17
-        },
-        {
-            "image": "instructor6.jpg",
-            "name": "Emily Davis",
-            "email": "emily.davis@example.com",
-            "classesTaken": 14
-        },
-        {
-            "image": "instructor7.jpg",
-            "name": "Alexandra Lee",
-            "email": "alexandra.lee@example.com",
-            "classesTaken": 11
-        },
-        {
-            "image": "instructor8.jpg",
-            "name": "Daniel Brown",
-            "email": "daniel.brown@example.com",
-            "classesTaken": 19
-        },
-        {
-            "image": "instructor9.jpg",
-            "name": "Olivia Wilson",
-            "email": "olivia.wilson@example.com",
-            "classesTaken": 9
-        },
-        {
-            "image": "instructor10.jpg",
-            "name": "James Johnson",
-            "email": "james.johnson@example.com",
-            "classesTaken": 16
-        }
-    ]
-}
+[
+    {
+        "image": "instructor1.jpg",
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "classesTaken": 15
+    },
+    {
+        "image": "instructor2.jpg",
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com",
+        "classesTaken": 12
+    },
+    {
+        "image": "instructor3.jpg",
+        "name": "Mike Johnson",
+        "email": "mike.johnson@example.com",
+        "classesTaken": 20
+    },
+    {
+        "image": "instructor4.jpg",
+        "name": "Sarah Thompson",
+        "email": "sarah.thompson@example.com",
+        "classesTaken": 8
+    },
+    {
+        "image": "instructor5.jpg",
+        "name": "David Wilson",
+        "email": "david.wilson@example.com",
+        "classesTaken": 17
+    },
+    {
+        "image": "instructor6.jpg",
+        "name": "Emily Davis",
+        "email": "emily.davis@example.com",
+        "classesTaken": 14
+    },
+    {
+        "image": "instructor7.jpg",
+        "name": "Alexandra Lee",
+        "email": "alexandra.lee@example.com",
+        "classesTaken": 11
+    },
+    {
+        "image": "instructor8.jpg",
+        "name": "Daniel Brown",
+        "email": "daniel.brown@example.com",
+        "classesTaken": 19
+    },
+    {
+        "image": "instructor9.jpg",
+        "name": "Olivia Wilson",
+        "email": "olivia.wilson@example.com",
+        "classesTaken": 9
+    },
+    {
+        "image": "instructor10.jpg",
+        "name": "James Johnson",
+        "email": "james.johnson@example.com",
+        "classesTaken": 16
+    }
+]

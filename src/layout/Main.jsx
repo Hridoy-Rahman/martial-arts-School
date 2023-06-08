@@ -5,7 +5,7 @@ import Navbar from '../pages/Shared/Navbar';
 
 const Main = () => {
     return (
-        <div>
+        <div className="bg-[url('https://i.ibb.co/vZw102q/bg.webp')] bg-cover bg-fixed">
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>

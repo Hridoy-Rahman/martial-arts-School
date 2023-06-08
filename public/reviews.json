@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "rating": 4.5,
+        "comment": "I had a great experience at this martial arts academy. The instructors are knowledgeable and friendly. The classes are well-structured and challenging.",
+        "date": "2023-05-15"
+    },
+    {
+        "id": 2,
+        "name": "Jane Smith",
+        "rating": 5,
+        "comment": "This is the best martial arts school in town! The instructors are amazing and the classes are fun and engaging. I highly recommend it.",
+        "date": "2023-05-18"
+    },
+    {
+        "id": 3,
+        "name": "Mike Johnson",
+        "rating": 4,
+        "comment": "I've been training here for a few months and it's been a fantastic experience. The instructors are skilled and supportive, and the facility is top-notch.",
+        "date": "2023-05-20"
+    },
+    {
+        "id": 4,
+        "name": "Sarah Davis",
+        "rating": 4.8,
+        "comment": "I joined this martial arts academy to learn self-defense, and I'm so glad I did. The classes are empowering and the instructors make learning enjoyable.",
+        "date": "2023-05-22"
+    },
+    {
+        "id": 5,
+        "name": "David Wilson",
+        "rating": 4.2,
+        "comment": "I'm impressed with the quality of instruction at this academy. The instructors are passionate about what they do, and the class environment is supportive.",
+        "date": "2023-05-25"
+    }
+]
