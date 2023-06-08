@@ -1,0 +1,72 @@
+[
+    {
+        "image": "https://i.ibb.co/HhqfwW6/1.jpg",
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "classesTaken": 15,
+        "specialty": "Kickboxing"
+    },
+    {
+        "image": "https://i.ibb.co/MB0r86Z/2.jpg",
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com",
+        "classesTaken": 12,
+        "specialty": "Muay Thai"
+    },
+    {
+        "image": "https://i.ibb.co/rt9qgkg/3.jpg",
+        "name": "Mike Johnson",
+        "email": "mike.johnson@example.com",
+        "classesTaken": 20,
+        "specialty": "Brazilian Jiu-Jitsu"
+    },
+    {
+        "image": "https://i.ibb.co/JHnjqSm/4.jpg",
+        "name": "Sarah Thompson",
+        "email": "sarah.thompson@example.com",
+        "classesTaken": 8,
+        "specialty": "Taekwondo"
+    },
+    {
+        "image": "https://i.ibb.co/rt9qgkg/3.jpg",
+        "name": "David Wilson",
+        "email": "david.wilson@example.com",
+        "classesTaken": 17,
+        "specialty": "Boxing"
+    },
+    {
+        "image": "https://i.ibb.co/JHnjqSm/4.jpg",
+        "name": "Emily Davis",
+        "email": "emily.davis@example.com",
+        "classesTaken": 14,
+        "specialty": "Karate"
+    },
+    {
+        "image": "https://i.ibb.co/rt9qgkg/3.jpg",
+        "name": "Alexandra Lee",
+        "email": "alexandra.lee@example.com",
+        "classesTaken": 11,
+        "specialty": "Capoeira"
+    },
+    {
+        "image": "https://i.ibb.co/HhqfwW6/1.jpg",
+        "name": "Daniel Brown",
+        "email": "daniel.brown@example.com",
+        "classesTaken": 19,
+        "specialty": "Krav Maga"
+    },
+    {
+        "image": "https://i.ibb.co/MB0r86Z/2.jpg",
+        "name": "Olivia Wilson",
+        "email": "olivia.wilson@example.com",
+        "classesTaken": 9,
+        "specialty": "Aikido"
+    },
+    {
+        "image": "https://i.ibb.co/HhqfwW6/1.jpg",
+        "name": "James Johnson",
+        "email": "james.johnson@example.com",
+        "classesTaken": 16,
+        "specialty": "Wing Chun"
+    }
+]

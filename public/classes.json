@@ -1,0 +1,82 @@
+[
+    {
+        "class_image": "image1.jpg",
+        "class_name": "Karate",
+        "instructor_name": "John Smith",
+        "available_seats": 20,
+        "price": 50,
+        "numberOfStudents": 15
+    },
+    {
+        "class_image": "image2.jpg",
+        "class_name": "Taekwondo",
+        "instructor_name": "Emily Johnson",
+        "available_seats": 15,
+        "price": 60,
+        "numberOfStudents": 12
+    },
+    {
+        "class_image": "image3.jpg",
+        "class_name": "Jiu-Jitsu",
+        "instructor_name": "Michael Davis",
+        "available_seats": 10,
+        "price": 70,
+        "numberOfStudents": 8
+    },
+    {
+        "class_image": "image4.jpg",
+        "class_name": "Muay Thai",
+        "instructor_name": "Sarah Thompson",
+        "available_seats": 12,
+        "price": 55,
+        "numberOfStudents": 10
+    },
+    {
+        "class_image": "image5.jpg",
+        "class_name": "Kung Fu",
+        "instructor_name": "Robert Wilson",
+        "available_seats": 18,
+        "price": 65,
+        "numberOfStudents": 14
+    },
+    {
+        "class_image": "image6.jpg",
+        "class_name": "Boxing",
+        "instructor_name": "Jennifer Lee",
+        "available_seats": 10,
+        "price": 60,
+        "numberOfStudents": 8
+    },
+    {
+        "class_image": "image7.jpg",
+        "class_name": "Krav Maga",
+        "instructor_name": "David Rodriguez",
+        "available_seats": 15,
+        "price": 75,
+        "numberOfStudents": 10
+    },
+    {
+        "class_image": "image8.jpg",
+        "class_name": "Capoeira",
+        "instructor_name": "Maria Silva",
+        "available_seats": 12,
+        "price": 70,
+        "numberOfStudents": 9
+    },
+    {
+        "class_image": "image9.jpg",
+        "class_name": "Kickboxing",
+        "instructor_name": "Daniel Brown",
+        "available_seats": 20,
+        "price": 55,
+        "numberOfStudents": 16
+    },
+    {
+        "class_image": "image10.jpg",
+        "class_name": "Aikido",
+        "instructor_name": "Laura Davis",
+        "available_seats": 16,
+        "price": 65,
+        "numberOfStudents": 12
+    }
+]
