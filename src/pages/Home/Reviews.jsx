@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FaStar,FaStarHalf } from 'react-icons/fa';
+import { FaStar, FaStarHalf } from 'react-icons/fa';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
@@ -27,8 +27,11 @@ const Reviews = () => {
             </div>
             <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
                 {reviews.map(review => (
-                    <SwiperSlide key={review.id}>
-                        <div className='flex flex-col items-center justify-center h-full p-12'>
+                    <SwiperSlide 
+                    className='p-4 lg:p-16'
+                        key={review.id}
+                    >
+                        <div className='flex flex-col items-center  border-2  rounded-2xl  bg-blue-300  gap-4 justify-center h-full p-12'>
                             <h1 className='text-2xl font-bold text-orange-400'>{review.name}</h1>
                             <h1 className='text-xl font-bold text-orange-400 flex text-center items-center'><Rating style={{ maxWidth: 250 }} value={review.rating} readOnly /></h1>
                             <h1 className='text-2xl font-bold text-orange-500 text-center'>{review.comment}</h1>
