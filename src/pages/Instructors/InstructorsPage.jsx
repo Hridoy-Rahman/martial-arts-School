@@ -7,7 +7,7 @@ const InstructorsPage = () => {
     const { user, createUser } = useContext(AuthContext)
 
     useEffect(() => {
-        fetch('instructors.json')
+        fetch('http://localhost:5000/instructors')
             .then(res => res.json())
             .then(data => {
                 setInstructors(data);
@@ -24,7 +24,7 @@ const InstructorsPage = () => {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {instructors.map(instructor => (
                     <div
-                        key={instructor.name}
+                        key={instructor._id}
                         className="card lg:card-side  bg-base-100 shadow-xl"
                     >
                         <div className="card-body">

@@ -57,12 +57,12 @@ const Login = () => {
                 <title>Martial Arts | Login</title>
             </Helmet>
             <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col md:flex-row-reverse mt-16">
-                    <div className="text-center md:w-1/2 lg:text-left">
+                <div className="hero-content flex-col w-full md:flex-row-reverse mt-16">
+                    <div className="text-center w-1/2 lg:text-left">
                         <h1 className="text-5xl text-center font-bold mb-4">Login now!</h1>
                         <img className='items-center' src="https://i.ibb.co/1rmfzry/login.jpg" alt="" />
                     </div>
-                    <div className="card md:w-1/2 max-w-sm shadow-2xl bg-base-100">
+                    <div className="card w-1/2 max-w-sm shadow-2xl bg-base-100">
                         <form onSubmit={handleLogin} className="card-body">
                             <div className="form-control">
                                 <label className="label">

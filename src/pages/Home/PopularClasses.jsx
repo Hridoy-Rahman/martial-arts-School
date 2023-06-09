@@ -10,11 +10,10 @@ const PopularClasses = () => {
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {
-        fetch('classes.json')
+        fetch('http://localhost:5000/classes')
             .then(res => res.json())
             .then(data => {
                 setClasses(data);
-                console.log(data);
             });
     }, []);
 
@@ -40,11 +39,11 @@ const PopularClasses = () => {
                 >
                     {topClasses.map(popularClass => (
                         <SwiperSlide
-                            key={popularClass.class_name}
+                            key={popularClass._id}
                         >
-                            <div className='flex border-2 p-4 rounded-2xl items-center bg-blue-300  gap-4'>
+                            <div className='flex flex-col lg:flex-row border-2 p-4 rounded-2xl items-center bg-blue-300  gap-4'>
                                 <div>
-                                    <img className='w-full h-96 rounded-xl' src={popularClass.class_image} alt="" />
+                                    <img className=' w-48 h-32 lg:w-full lg:h-96 rounded-xl' src={popularClass.class_image} alt="" />
 
                                 </div>
                                 <div className='text-center'>

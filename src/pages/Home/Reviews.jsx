@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FaStar, FaStarHalf } from 'react-icons/fa';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 
@@ -13,9 +12,10 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch('reviews.json')
+        fetch('http://localhost:5000/reviews')
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 setReviews(data);
             });
     }, []);
@@ -29,7 +29,7 @@ const Reviews = () => {
                 {reviews.map(review => (
                     <SwiperSlide 
                     className='p-4 lg:p-16'
-                        key={review.id}
+                        key={review._id}
                     >
                         <div className='flex flex-col items-center  border-2  rounded-2xl  bg-blue-300  gap-4 justify-center h-full p-12'>
                             <h1 className='text-2xl font-bold text-orange-400'>{review.name}</h1>

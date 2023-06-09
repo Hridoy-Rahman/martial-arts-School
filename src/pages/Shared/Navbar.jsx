@@ -38,12 +38,12 @@ const Navbar = () => {
                     </div>
                 </div>
             ) : (
-                <div className='flex'>
+                <div className='flex flex-col lg:flex-row'>
                     <li>
                         <Link to="/login">Login</Link>
                     </li>
                     <li>
-                        <Link to="/login">Sign Up</Link>
+                        <Link to="/signup">Sign Up</Link>
                     </li>
                 </div>
             )}

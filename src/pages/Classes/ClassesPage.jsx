@@ -8,7 +8,7 @@ const ClassesPage = () => {
     const { user, createUser } = useContext(AuthContext)
 
     useEffect(() => {
-        fetch('classes.json')
+        fetch('http://localhost:5000/classes')
             .then(res => res.json())
             .then(data => {
                 setClasses(data);
@@ -45,7 +45,7 @@ const ClassesPage = () => {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {classes.map(cls => (
                     <div
-                        key={cls.id}
+                        key={cls._id}
                         className={`card lg:card-side bg-${cls.available_seats === 0 ? 'red-800' : 'base-100'} shadow-xl`}
                     >
                         <div className="card-body">
@@ -53,7 +53,7 @@ const ClassesPage = () => {
                             <h2 className="card-title">{cls.class_name}</h2>
                             <p>Instructor: {cls.instructor_name}</p>
                             <p>Available Seats: {cls.available_seats}</p>
-                            <p>Price: {cls.price}</p>
+                            <p>Price : ${cls.price}</p>
                             <div className="card-actions justify-end">
                                 <button
                                     className="btn btn-primary"
