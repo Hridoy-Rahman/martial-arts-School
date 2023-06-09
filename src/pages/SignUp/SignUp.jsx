@@ -7,16 +7,26 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, watch } = useForm();
     const { createUser } = useContext(AuthContext);
     const navigate = useNavigate();
+    const password = watch('password');
 
     const onSubmit = (data) => {
         createUser(data.email, data.password)
             .then((result) => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                navigate('/'); 
+                Swal.fire({
+                    title: 'User Sign Up Successful.',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                });
+                navigate('/');
             });
     };
 
@@ -116,7 +126,7 @@ const SignUp = () => {
                                         minLength: 6,
                                         maxLength: 20,
                                         pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])/,
-                                        validate: (value) => value === watch('password')
+                                        validate: (value) => value === password
                                     })}
                                     placeholder="password"
                                     className="input input-bordered"
