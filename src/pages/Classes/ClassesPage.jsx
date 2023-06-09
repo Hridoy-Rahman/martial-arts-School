@@ -3,8 +3,11 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const ClassesPage = () => {
+    const newId = uuidv4();
+
     const [classes, setClasses] = useState([]);
     const [selectedClasses, setSelectedClasses] = useState([]);
     const { user } = useContext(AuthContext)
@@ -16,35 +19,41 @@ const ClassesPage = () => {
             .then(res => res.json())
             .then(data => {
                 setClasses(data);
-                // console.log(data);
             });
     }, []);
 
     const handleSelectClass = (cls) => {
-        
         const { _id, class_name, class_image, instructor_name, price } = cls;
 
+        
 
         if (user && user?.email) {
             const orderClass = {
-                _id: _id,
-                selectedClassId: _id,
+                _id: newId,
                 class_name: class_name,
                 class_image: class_image,
                 price: price,
                 instructor_name: instructor_name,
                 user_email: user.email
             };
-            console.log(orderClass)
+            const isCartSelected = selectedClasses.some((selectedCls) =>{selectedCls.insertedId === orderClass._id})
+    
+            if (isCartSelected) {
+                
+                return;
+            }
+            console.log(orderClass,isCartSelected)
+
             fetch('http://localhost:5000/selectedClasses', {
-                method: "POST",
+                method: 'POST',
                 headers: {
-                    'content-type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(orderClass)
             })
                 .then(res => res.json())
                 .then(data => {
+                    setSelectedClasses([...selectedClasses, data]);
                     console.log(data);
                     if (data.insertedId) {
                         Swal.fire({
@@ -53,12 +62,13 @@ const ClassesPage = () => {
                             title: 'Your work has been saved',
                             showConfirmButton: false,
                             timer: 1500
-                        })
+                        });
                     }
                 })
-
-        }
-        else {
+                .catch(error => {
+                    console.error(error);
+                });
+        } else {
             Swal.fire({
                 title: 'Please Login first!',
                 icon: 'warning',
@@ -68,9 +78,9 @@ const ClassesPage = () => {
                 confirmButtonText: 'Yes, Login'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate('/login', { state: { from: location } })
+                    navigate('/login', { state: { from: location } });
                 }
-            })
+            });
         }
     };
 
@@ -96,9 +106,11 @@ const ClassesPage = () => {
                                 <button
                                     className="btn btn-primary"
                                     onClick={() => handleSelectClass(cls)}
-                                    disabled={cls.available_seats === 0}
+                                    disabled={cls.available_seats === 0 || selectedClasses.some((selectedCls) => {
+                                        console.log()
+                                        selectedCls._id === cls._id})}
                                 >
-                                    Select
+                                    {cls.available_seats === 0 ? 'Sold Out' : 'Select'}
                                 </button>
                             </div>
                         </div>
