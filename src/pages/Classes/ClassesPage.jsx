@@ -2,38 +2,76 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ClassesPage = () => {
     const [classes, setClasses] = useState([]);
-    const { user, createUser } = useContext(AuthContext)
+    const [selectedClasses, setSelectedClasses] = useState([]);
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation()
 
     useEffect(() => {
         fetch('http://localhost:5000/classes')
             .then(res => res.json())
             .then(data => {
                 setClasses(data);
-                console.log(data);
+                // console.log(data);
             });
     }, []);
 
-    const handleSelectClass = (classId) => {
-        if (!user) {
+    const handleSelectClass = (cls) => {
+        
+        const { _id, class_name, class_image, instructor_name, price } = cls;
+
+
+        if (user && user?.email) {
+            const orderClass = {
+                _id: _id,
+                selectedClassId: _id,
+                class_name: class_name,
+                class_image: class_image,
+                price: price,
+                instructor_name: instructor_name,
+                user_email: user.email
+            };
+            console.log(orderClass)
+            fetch('http://localhost:5000/selectedClasses', {
+                method: "POST",
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(orderClass)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.insertedId) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your work has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+
+        }
+        else {
             Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'You need to login first!'
-              })
-            return;
+                title: 'Please Login first!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Login'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', { state: { from: location } })
+                }
+            })
         }
-
-        const selectedClass = classes.find(cls => cls.id === classId);
-        if (selectedClass.availables_seats === 0) {
-            alert('No available seats for this course.');
-            return;
-        }
-
-        // TODO: Implement the logic for selecting the class
-        console.log('Class selected:', selectedClass);
     };
 
     return (
@@ -45,11 +83,11 @@ const ClassesPage = () => {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {classes.map(cls => (
                     <div
-                        key={cls._id}
+                        key={cls.id}
                         className={`card lg:card-side bg-${cls.available_seats === 0 ? 'red-800' : 'base-100'} shadow-xl`}
                     >
                         <div className="card-body">
-                            <img src={cls.class_image} alt="Class" />
+                            <img className='rounded-lg' src={cls.class_image} alt="Class" />
                             <h2 className="card-title">{cls.class_name}</h2>
                             <p>Instructor: {cls.instructor_name}</p>
                             <p>Available Seats: {cls.available_seats}</p>
@@ -57,7 +95,7 @@ const ClassesPage = () => {
                             <div className="card-actions justify-end">
                                 <button
                                     className="btn btn-primary"
-                                    onClick={() => handleSelectClass(cls.id)}
+                                    onClick={() => handleSelectClass(cls)}
                                     disabled={cls.available_seats === 0}
                                 >
                                     Select

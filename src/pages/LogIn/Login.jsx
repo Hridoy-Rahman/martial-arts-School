@@ -37,7 +37,7 @@ const Login = () => {
                         popup: 'animate__animated animate__fadeOutUp'
                     }
                 });
-                navigate(from, { replace: true });
+                navigate(from, { replace: true } || "/");
             })
     }
 
