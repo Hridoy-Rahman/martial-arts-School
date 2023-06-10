@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Outlet } from 'react-router-dom/dist';
 
 const Dashboard = () => {
+    const isAdmin = true;
     return (
         <div>
             <div className="drawer">
@@ -20,9 +21,20 @@ const Dashboard = () => {
                                 <li><Link to="/">Home</Link></li>
                                 <li><Link to="/classes">Classes</Link></li>
                                 <li><Link to="/instructors">Instructors</Link></li>
-                                <li><Link to="/dashboard/selectedClasses">Selected Class</Link></li>
-                                <li><Link to="/dashboard/enrolledClasses">Enrolled Class</Link></li>
-                                <li><Link to="/dashboard/paymentHistory">Payment History</Link></li>
+                                {
+                                    isAdmin ?
+
+                                        <>
+                                            <li><Link to="/dashboard/users">All Users</Link></li>
+                                            <li><Link to="/dashboard/manageClass">Manage Class</Link></li>
+                                        </>
+                                        :
+                                        <>
+                                            <li><Link to="/dashboard/selectedClasses">Selected Class</Link></li>
+                                            <li><Link to="/dashboard/enrolledClasses">Enrolled Class</Link></li>
+                                            <li><Link to="/dashboard/paymentHistory">Payment History</Link></li>
+                                        </>
+                                }
                             </ul>
                         </div>
                     </div>
