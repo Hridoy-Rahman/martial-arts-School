@@ -10,9 +10,10 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layout/Dashboard";
 import SelectedClasses from "../pages/Dashboard/StudentDashboard/SelectedClasses";
 import EnrolledClasses from "../pages/Dashboard/StudentDashboard/EnrolledClasses";
-import PaymentHistory from "../pages/Dashboard/StudentDashboard/PaymentHistory";
+import PaymentHistory from "../pages/Dashboard/StudentDashboard/Payment/PaymentHistory";
 import AllUsers from "../pages/Dashboard/Admin/AllUsers";
 import ManageClass from "../pages/Dashboard/Admin/ManageClass";
+import Payment from "../pages/Dashboard/StudentDashboard/Payment/Payment";
 
 
 
@@ -54,6 +55,14 @@ export const router = createBrowserRouter([
             {
                 path:"enrolledClasses",
                 element:<EnrolledClasses></EnrolledClasses>
+            },
+            {
+                path:"payment/:id",
+                element:<Payment></Payment>,
+                loader: async ({ params }) => {
+                    return fetch(`/payment/${params._id}.json`);
+                  },
+            
             },
             {
                 path:"paymentHistory",

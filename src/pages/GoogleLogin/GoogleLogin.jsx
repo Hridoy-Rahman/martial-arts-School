@@ -46,8 +46,8 @@ const GoogleLogin = () => {
         <div>
             <div className="divider"></div>
             <div className="w-full text-center my-4">
-                <button onClick={handleGoogleSignIn} className="btn btn-circle btn-outline">
-                    <FaGoogle></FaGoogle>
+                <button onClick={handleGoogleSignIn} className="btn btn-outline btn-accent">
+                    <FaGoogle></FaGoogle>Sign in with Google
                 </button>
             </div>
         </div>

@@ -5,9 +5,11 @@ import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
 import { AuthContext } from '../../Provider/AuthProvider';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true);
+    const [passwordVisible, setPasswordVisible] = useState(false);
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -50,6 +52,9 @@ const Login = () => {
             setDisabled(true)
         }
     }
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
 
     return (
         <>
@@ -74,7 +79,16 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name="password" placeholder="password" className="input input-bordered" />
+                                <div className='flex items-center'>
+                                    <input type={passwordVisible ? "text" : "password"} name="password" placeholder="password" className="input input-bordered" />
+                                    <button
+                                        type='button'
+                                        onClick={togglePasswordVisibility}
+                                        className='btn btn-circle btn-xs ml-2'
+                                    >
+                                        {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                                    </button>
+                                </div>
                                 <label className="label">
                                     <Link href="#" className="label-text-alt link link-hover">Forgot password?</Link>
                                 </label>
@@ -91,8 +105,8 @@ const Login = () => {
                             </div>
                         </form>
                         <p className='text-center mb-8'><small>Don't have account? Create an account <Link className='text-blue-700' to="/signup">Sign Up</Link> </small></p>
-                      <GoogleLogin></GoogleLogin>
-                
+                        <GoogleLogin></GoogleLogin>
+
                     </div>
                 </div>
             </div>

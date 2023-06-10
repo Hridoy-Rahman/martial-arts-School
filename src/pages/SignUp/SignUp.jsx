@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,8 +6,10 @@ import Swal from 'sweetalert2'
 import { AuthContext } from "../../Provider/AuthProvider";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
 import { LoadCanvasTemplate } from "react-simple-captcha";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUp = () => {
+    const [passwordVisible, setPasswordVisible] = useState(false);
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -47,7 +49,10 @@ const SignUp = () => {
                     })
             });
     };
- 
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+
 
     return (
         <>
@@ -110,17 +115,26 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input
-                                    type="password"
-                                    {...register("password", {
-                                        required: true,
-                                        minLength: 6,
-                                        maxLength: 20,
-                                        pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])/
-                                    })}
-                                    placeholder="password"
-                                    className="input input-bordered"
-                                />
+                                <div className="flex items-center">
+                                    <input
+                                        type={passwordVisible ?"text" : "password"}
+                                        {...register("password", {
+                                            required: true,
+                                            minLength: 6,
+                                            maxLength: 20,
+                                            pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])/
+                                        })}
+                                        placeholder="password"
+                                        className="input input-bordered"
+                                    />
+                                    <button
+                                        type='button'
+                                        onClick={togglePasswordVisibility}
+                                        className='btn btn-circle btn-xs ml-2'
+                                    >
+                                        {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                                    </button>
+                                </div>
 
                                 {errors.password?.type === 'required' && (
                                     <p className="text-red-600">Password is required</p>
@@ -138,18 +152,27 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text"> Confirm Password</span>
                                 </label>
-                                <input
-                                    type="password"
-                                    {...register("confirmPassword", {
-                                        required: true,
-                                        minLength: 6,
-                                        maxLength: 20,
-                                        pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])/,
-                                        validate: (value) => value === password
-                                    })}
-                                    placeholder="password"
-                                    className="input input-bordered"
-                                />
+                                <div className="flex items-center">
+                                    <input
+                                        type={passwordVisible ?"text" : "password"}
+                                        {...register("confirmPassword", {
+                                            required: true,
+                                            minLength: 6,
+                                            maxLength: 20,
+                                            pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[a-z])/,
+                                            validate: (value) => value === password
+                                        })}
+                                        placeholder="password"
+                                        className="input input-bordered"
+                                    />
+                                    <button
+                                        type='button'
+                                        onClick={togglePasswordVisibility}
+                                        className='btn btn-circle btn-xs ml-2'
+                                    >
+                                        {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                                    </button>
+                                </div>
 
                                 {errors.confirmPassword?.type === 'required' && (
                                     <p className="text-red-600">Password is required</p>
@@ -175,7 +198,7 @@ const SignUp = () => {
                                 <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
                         </form>
-                        <p>
+                        <p className="text-center">
                             <small>
                                 Already have an account{' '}
                                 <Link className="text-blue-700" to="/login">

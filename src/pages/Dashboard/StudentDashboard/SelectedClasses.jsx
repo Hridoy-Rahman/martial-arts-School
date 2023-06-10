@@ -106,7 +106,7 @@ const SelectedClasses = () => {
                                     <td className="">${cls.price}</td>
                                     <td>
                                         <button onClick={() => handleDeleteClass(cls)} className="btn btn-ghost bg-red-600  text-white"><FaTrashAlt></FaTrashAlt></button>
-                                        <Link to="/payment"><button className='btn btn-primary'>Payment</button></Link>
+                                        <Link to={`/dashboard/payment/${cls._id}`}><button className='btn btn-primary'>Payment</button></Link>
                                     </td>
                                 </tr>)
                             }
