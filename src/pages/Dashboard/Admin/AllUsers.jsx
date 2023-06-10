@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 import { useQuery } from 'react-query';
 
 const AllUsers = () => {
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch(`http://localhost:5000/users`)
+        const res = await fetch(`https://martial-arts-server-one.vercel.app/users`)
         return res.json()
     });
     
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://martial-arts-server-one.vercel.app/users/admin/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -21,7 +22,7 @@ const AllUsers = () => {
             })
     }
     const handleMakeinstructor = (id) => {
-        fetch(`http://localhost:5000/users/instructor/${id}`, {
+        fetch(`https://martial-arts-server-one.vercel.app/users/instructor/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -36,6 +37,9 @@ const AllUsers = () => {
 
     return (
         <div className='text-center'>
+             <Helmet>
+                <title>Martial Arts | All Users</title>
+            </Helmet>
             <h2 className='text-2xl mt-12 font-bold'> Users ({users.length})</h2>
             {users.length > 0 ? (
                 <div className="overflow-x-auto w-full">

@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { useLoaderData, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const Payment = () => {
     const {user}=useContext(AuthContext)
@@ -14,7 +15,7 @@ const Payment = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:5000/payment', {
+        fetch('https://martial-arts-server-one.vercel.app/payment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

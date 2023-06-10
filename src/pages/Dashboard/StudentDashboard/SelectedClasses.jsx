@@ -11,7 +11,7 @@ const SelectedClasses = () => {
 
     useEffect(() => {
         if (user && user.email) {
-            fetch(`http://localhost:5000/selectedClasses?user_email=${user.email}`)
+            fetch(`https://martial-arts-server-one.vercel.app/selectedClasses?user_email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setClasses(data);
@@ -33,7 +33,7 @@ const SelectedClasses = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/selectedClasses/${cls._id}`, {
+                fetch(`https://martial-arts-server-one.vercel.app/selectedClasses/${cls._id}`, {
                     method: 'DELETE',
                 })
                     .then(res => {

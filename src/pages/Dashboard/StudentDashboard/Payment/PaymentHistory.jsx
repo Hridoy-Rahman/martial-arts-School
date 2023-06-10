@@ -7,7 +7,7 @@ const PaymentHistory = () => {
 
     useEffect(() => {
         if (user && user.email) {
-            fetch(`http://localhost:5000/payment?user_email=${user.email}`)
+            fetch(`https://martial-arts-server-one.vercel.app/payment?user_email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

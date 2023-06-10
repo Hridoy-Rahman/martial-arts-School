@@ -8,7 +8,7 @@ const Dashboard = () => {
     const { user } = useContext(AuthContext)
     const [isAdmin, setIsAdmin] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user.email}`)
+        fetch(`https://martial-arts-server-one.vercel.app/users/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data)

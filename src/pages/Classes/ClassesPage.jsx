@@ -12,7 +12,7 @@ const ClassesPage = () => {
     const location = useLocation();
 
     useEffect(() => {
-        fetch('http://localhost:5000/classes')
+        fetch('https://martial-arts-server-one.vercel.app/classes')
             .then(res => res.json())
             .then(data => {
                 setClasses(data);
@@ -40,7 +40,7 @@ const ClassesPage = () => {
                 return;
             }
 
-            fetch('http://localhost:5000/selectedClasses', {
+            fetch('https://martial-arts-server-one.vercel.app/selectedClasses', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
