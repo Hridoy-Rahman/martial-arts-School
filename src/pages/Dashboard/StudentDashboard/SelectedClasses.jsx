@@ -2,15 +2,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom/dist';
+import Swal from 'sweetalert2';
 
 const SelectedClasses = () => {
-    const { user } = useContext(AuthContext);
+    const { user, selectedClasses, refetch } = useContext(AuthContext);
 
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {
         if (user && user.email) {
-            fetch(`http://localhost:5000/selectedClasses?user_email=${encodeURIComponent(user.email)}`)
+            fetch(`http://localhost:5000/selectedClasses?user_email=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setClasses(data);
@@ -21,20 +22,35 @@ const SelectedClasses = () => {
         }
     }, [user]);
 
-    const handleDeleteClass = (classId) => {
-        fetch(`http://localhost:5000/selectedClasses/${classId}`, {
-            method: 'DELETE'
+    const handleDeleteClass = (cls) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/selectedClasses/${cls._id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+
+                        if (data.deletedCount > 0) {
+                            console.log(data.deletedCount)
+                            refetch()
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+            }
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    // Remove the deleted class from the state
-                    setClasses(classes.filter(cls => cls._id !== classId));
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
     };
 
     const handlePayClass = (classId) => {
