@@ -1,26 +1,38 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import { FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom/dist';
-import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
 
 const AllUsers = () => {
-    const { user } = useContext(AuthContext);
-
-    const [users, setUsers] = useState([]);
-
-    useEffect(() => {
-        if (user && user.email) {
-            fetch(`http://localhost:5000/users`)
-                .then(res => res.json())
-                .then(data => {
-                    setUsers(data);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        }
-    }, [user]);
+    const { data: users = [], refetch } = useQuery(['users'], async () => {
+        const res = await fetch(`http://localhost:5000/users`)
+        return res.json()
+    });
+    
+    const handleMakeAdmin = (id) => {
+        fetch(`http://localhost:5000/users/admin/${id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount) {
+                    refetch()
+                }
+            })
+    }
+    const handleMakeinstructor = (id) => {
+        fetch(`http://localhost:5000/users/instructor/${id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.modifiedCount) {
+                    refetch()
+                }
+            })
+    }
 
 
     return (
@@ -48,14 +60,19 @@ const AllUsers = () => {
                                     </td>
 
                                     <td>
-                                       {user.name}
+                                        {user.name}
                                     </td>
                                     <td>
                                         {user.email}
                                     </td>
                                     <td>
-                                        <button onClick={() => handleDeleteClass(user)} className="btn btn-secondary text-white">Instructor</button>
-                                        <Link><button className='btn btn-primary'>Admin</button></Link>
+                                        <td>{user.role === 'instructor' ? 'Instructor' :
+                                            <button onClick={() => handleMakeinstructor(user._id)} className="btn btn-primary text-white">Instructor</button>}
+                                        </td>
+
+                                        <td>{user.role === 'admin' ? 'Admin' :
+                                            <button onClick={() => handleMakeAdmin(user._id)} className="btn btn-secondary bg-orange-600  text-white">Admin</button>
+                                        }</td>
                                     </td>
                                 </tr>)
                             }
