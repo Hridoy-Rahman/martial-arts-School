@@ -35,11 +35,8 @@ const SelectedClasses = () => {
                 fetch(`http://localhost:5000/selectedClasses/${cls._id}`, {
                     method: 'DELETE',
                 })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.acknowledged) {
-                            console.log(data.acknowledged);
-                            // Filter the classes array to exclude the deleted class
+                    .then(res => {
+                        if (res.ok) {
                             const updatedClasses = classes.filter(item => item._id !== cls._id);
                             setClasses(updatedClasses);
                             Swal.fire(
@@ -47,10 +44,21 @@ const SelectedClasses = () => {
                                 'Your file has been deleted.',
                                 'success'
                             );
+                        } else {
+                            Swal.fire(
+                                'Error',
+                                'Failed to delete the selected class.',
+                                'error'
+                            );
                         }
                     })
                     .catch(error => {
                         console.error(error);
+                        Swal.fire(
+                            'Error',
+                            'Failed to delete the selected class.',
+                            'error'
+                        );
                     });
             }
         });

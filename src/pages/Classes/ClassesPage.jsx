@@ -6,13 +6,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 const ClassesPage = () => {
-    const newId = uuidv4().substring(0, 12);
-
     const [classes, setClasses] = useState([]);
     const [selectedClasses, setSelectedClasses] = useState([]);
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
-    const location = useLocation()
+    const location = useLocation();
 
     useEffect(() => {
         fetch('http://localhost:5000/classes')
@@ -23,26 +21,22 @@ const ClassesPage = () => {
     }, []);
 
     const handleSelectClass = (cls) => {
-        const { _id, class_name, class_image, instructor_name, price } = cls;
-
-        
-
-        if (user && user?.email) {
+        const { _id,class_name, class_image, instructor_name, price } = cls;
+        if (user && user.email) {
             const orderClass = {
-                _id: newId,
+                _id,
                 class_name: class_name,
                 class_image: class_image,
                 price: price,
                 instructor_name: instructor_name,
                 user_email: user.email
             };
-            const isClassSelected = selectedClasses.some((selectedCls) =>{selectedCls.insertedId === orderClass._id})
-    
+
+            const isClassSelected = selectedClasses.some((selectedCls) =>selectedCls.insertedId===cls._id);
+
             if (isClassSelected) {
-                
                 return;
             }
-            console.log(orderClass,isClassSelected)
 
             fetch('http://localhost:5000/selectedClasses', {
                 method: 'POST',
@@ -53,13 +47,12 @@ const ClassesPage = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    setSelectedClasses([...selectedClasses, data]);
-                    console.log(data);
+                    setSelectedClasses(prevSelectedClasses => [...prevSelectedClasses, data]);
                     if (data.insertedId) {
                         Swal.fire({
-                            position: 'top-end',
+                            position: 'center',
                             icon: 'success',
-                            title: 'Your work has been saved',
+                            title: 'Class Selected',
                             showConfirmButton: false,
                             timer: 1500
                         });
@@ -94,21 +87,22 @@ const ClassesPage = () => {
                 {classes.map(cls => (
                     <div
                         key={cls.id}
-                        className={`card lg:card-side bg-${cls.available_seats === 0 ? 'red-800' : 'base-100'} shadow-xl`}
+                        className={`card lg:card-side ${cls.available_seats === 0 ? 'bg-red-800' : 'bg-base-100'} shadow-xl`}
                     >
                         <div className="card-body">
                             <img className='rounded-lg' src={cls.class_image} alt="Class" />
                             <h2 className="card-title">{cls.class_name}</h2>
                             <p>Instructor: {cls.instructor_name}</p>
                             <p>Available Seats: {cls.available_seats}</p>
-                            <p>Price : ${cls.price}</p>
+                            <p>Price: ${cls.price}</p>
                             <div className="card-actions justify-end">
                                 <button
                                     className="btn btn-primary"
                                     onClick={() => handleSelectClass(cls)}
-                                    disabled={cls.available_seats === 0 || selectedClasses.some((selectedCls) => {
-                                        console.log()
-                                        selectedCls._id === cls._id})}
+                                    disabled={
+                                        cls.available_seats === 0 ||
+                                        selectedClasses.some((selectedCls) =>selectedCls.insertedId===cls._id)
+                                    }
                                 >
                                     {cls.available_seats === 0 ? 'Sold Out' : 'Select'}
                                 </button>
