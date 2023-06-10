@@ -1,10 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom/dist';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Dashboard = () => {
-
     const { user } = useContext(AuthContext)
     const [isAdmin, setIsAdmin] = useState([])
     useEffect(() => {
@@ -34,8 +32,6 @@ const Dashboard = () => {
                         <div className="flex-none hidden lg:block">
                             <ul className="menu menu-horizontal">
                                 <li><Link to="/">Home</Link></li>
-                                <li><Link to="/classes">Classes</Link></li>
-                                <li><Link to="/instructors">Instructors</Link></li>
                                 {
                                     isAdmin ?
 

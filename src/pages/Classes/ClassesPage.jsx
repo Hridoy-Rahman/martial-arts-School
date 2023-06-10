@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 const ClassesPage = () => {
-    const newId = uuidv4();
+    const newId = uuidv4().substring(0, 12);
 
     const [classes, setClasses] = useState([]);
     const [selectedClasses, setSelectedClasses] = useState([]);
@@ -36,13 +36,13 @@ const ClassesPage = () => {
                 instructor_name: instructor_name,
                 user_email: user.email
             };
-            const isCartSelected = selectedClasses.some((selectedCls) =>{selectedCls.insertedId === orderClass._id})
+            const isClassSelected = selectedClasses.some((selectedCls) =>{selectedCls.insertedId === orderClass._id})
     
-            if (isCartSelected) {
+            if (isClassSelected) {
                 
                 return;
             }
-            console.log(orderClass,isCartSelected)
+            console.log(orderClass,isClassSelected)
 
             fetch('http://localhost:5000/selectedClasses', {
                 method: 'POST',

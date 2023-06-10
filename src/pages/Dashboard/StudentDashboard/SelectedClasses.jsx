@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { FaTrashAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom/dist';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const SelectedClasses = () => {
-    const { user, selectedClasses, refetch } = useContext(AuthContext);
-
+    const { user } = useContext(AuthContext);
     const [classes, setClasses] = useState([]);
 
     useEffect(() => {
@@ -34,28 +33,27 @@ const SelectedClasses = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`http://localhost:5000/selectedClasses/${cls._id}`, {
-                    method: 'DELETE'
+                    method: 'DELETE',
                 })
                     .then(res => res.json())
                     .then(data => {
-
-                        if (data.deletedCount > 0) {
-                            console.log(data.deletedCount)
-                            refetch()
+                        if (data.acknowledged) {
+                            console.log(data.acknowledged);
+                            // Filter the classes array to exclude the deleted class
+                            const updatedClasses = classes.filter(item => item._id !== cls._id);
+                            setClasses(updatedClasses);
                             Swal.fire(
                                 'Deleted!',
                                 'Your file has been deleted.',
                                 'success'
-                            )
+                            );
                         }
                     })
+                    .catch(error => {
+                        console.error(error);
+                    });
             }
-        })
-    };
-
-    const handlePayClass = (classId) => {
-        // Implement your payment logic here
-        console.log(`Payment for class ${classId}`);
+        });
     };
 
     return (
@@ -100,12 +98,10 @@ const SelectedClasses = () => {
                                     <td className="">${cls.price}</td>
                                     <td>
                                         <button onClick={() => handleDeleteClass(cls)} className="btn btn-ghost bg-red-600  text-white"><FaTrashAlt></FaTrashAlt></button>
-                                        <Link to="/paymanet"><button className='btn btn-primary'>Paymanet</button></Link>
+                                        <Link to="/payment"><button className='btn btn-primary'>Payment</button></Link>
                                     </td>
                                 </tr>)
                             }
-
-
                         </tbody>
                     </table>
                 </div>
