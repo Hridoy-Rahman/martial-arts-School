@@ -45,6 +45,9 @@ const Payment = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Martial Arts | Payment</title>
+            </Helmet>
             <h1 className="text-4xl font-bold text-green-500 text-center mt-16 mb-16">Payment</h1>
             <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
                 <div className="mb-4">

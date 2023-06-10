@@ -3,6 +3,7 @@ import { AuthContext } from '../../../Provider/AuthProvider';
 import { FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const SelectedClasses = () => {
     const { user } = useContext(AuthContext);
@@ -66,6 +67,9 @@ const SelectedClasses = () => {
 
     return (
         <div className='text-center'>
+            <Helmet>
+                <title>Martial Arts | Selected Class</title>
+            </Helmet>
             <h2>Selected Classes ({classes.length})</h2>
             {classes.length > 0 ? (
                 <div className="overflow-x-auto w-full">

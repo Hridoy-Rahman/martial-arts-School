@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../Provider/AuthProvider';
-import { Link } from 'react-router-dom/dist';
-import { useQuery } from '@tanstack/react-query';
+
+import { useQuery } from 'react-query';
 
 const AllUsers = () => {
     const { data: users = [], refetch } = useQuery(['users'], async () => {

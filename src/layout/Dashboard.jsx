@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom/dist';
 import { AuthContext } from '../Provider/AuthProvider';
+import { Helmet } from 'react-helmet';
+import { FaWallet } from 'react-icons/fa';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
@@ -18,6 +20,9 @@ const Dashboard = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Martial Arts | Dashboard</title>
+            </Helmet>
             <div className="drawer">
                 <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
@@ -44,7 +49,7 @@ const Dashboard = () => {
                                         <>
                                             <li><Link to="/dashboard/selectedClasses">Selected Class</Link></li>
                                             <li><Link to="/dashboard/enrolledClasses">Enrolled Class</Link></li>
-                                            <li><Link to="/dashboard/paymentHistory">Payment History</Link></li>
+                                            <li><Link to="/dashboard/paymentHistory"><FaWallet></FaWallet>Payment History</Link></li>
                                         </>
 
 

@@ -7,6 +7,7 @@ import '@smastrom/react-rating/style.css'
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
+import { Bounce } from 'react-awesome-reveal';
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([]);
@@ -27,15 +28,17 @@ const Reviews = () => {
             </div>
             <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
                 {reviews.map(review => (
-                    <SwiperSlide 
-                    className='p-4 lg:p-16'
+                    <SwiperSlide
+                        className='p-4 lg:p-16'
                         key={review._id}
                     >
-                        <div className='flex flex-col items-center  border-2  rounded-2xl  bg-blue-300  gap-4 justify-center h-full p-12'>
-                            <h1 className='text-2xl font-bold text-orange-400'>{review.name}</h1>
-                            <h1 className='text-xl font-bold text-orange-400 flex text-center items-center'><Rating style={{ maxWidth: 250 }} value={review.rating} readOnly /></h1>
-                            <h1 className='text-2xl font-bold text-orange-500 text-center'>{review.comment}</h1>
-                        </div>
+                        <Bounce>
+                            <div className='flex flex-col items-center  border-2  rounded-2xl  bg-blue-300  gap-4 justify-center h-full p-12'>
+                                <h1 className='text-2xl font-bold text-orange-400'>{review.name}</h1>
+                                <h1 className='text-xl font-bold text-orange-400 flex text-center items-center'><Rating style={{ maxWidth: 250 }} value={review.rating} readOnly /></h1>
+                                <h1 className='text-2xl font-bold text-orange-500 text-center'>{review.comment}</h1>
+                            </div>
+                        </Bounce>
                     </SwiperSlide>
                 ))}
             </Swiper>

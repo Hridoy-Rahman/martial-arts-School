@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Roll, Bounce } from "react-awesome-reveal";
 
 
 
@@ -41,18 +42,23 @@ const PopularClasses = () => {
                         <SwiperSlide
                             key={popularClass._id}
                         >
-                            <div className='flex flex-col lg:flex-row border-2 p-4 rounded-2xl items-center bg-blue-300  gap-4'>
-                                <div>
-                                    <img className=' w-48 h-32 lg:w-full lg:h-96 rounded-xl' src={popularClass.class_image} alt="" />
+                            <Bounce>
+                                <div className='flex flex-col lg:flex-row border-2 p-4 rounded-2xl items-center bg-blue-300  gap-4'>
+                                    <div>
+                                        <img className=' w-48 h-32 lg:w-full lg:h-96 rounded-xl' src={popularClass.class_image} alt="" />
 
+                                    </div>
+                                    <div className='text-center'>
+
+                                        <h1 className='text-2xl font-bold text-blue-800'>Course Name : {popularClass.class_name}</h1>
+                                        <h1 className='text-2xl font-semibold text-blue-800'>Course Instructor : {popularClass.instructor_name}</h1>
+                                        <h1 className='text-2xl text-blue-600'>Price : ${popularClass.price}</h1>
+                                        <h1 className='text-2xl  text-blue-800'>Available Seat : {popularClass.available_seats}</h1>
+
+
+                                    </div>
                                 </div>
-                                <div className='text-center'>
-                                    <h1 className='text-2xl font-bold text-blue-800'>Course Name : {popularClass.class_name}</h1>
-                                    <h1 className='text-2xl font-semibold text-blue-800'>Course Instructor : {popularClass.instructor_name}</h1>
-                                    <h1 className='text-2xl text-blue-600'>Price : ${popularClass.price}</h1>
-                                    <h1 className='text-2xl  text-blue-800'>Available Seat : {popularClass.available_seats}</h1>
-                                </div>
-                            </div>
+                            </Bounce>
                         </SwiperSlide>
                     ))}
 
