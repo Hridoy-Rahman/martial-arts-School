@@ -1,9 +1,23 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom/dist';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const Dashboard = () => {
-    const isAdmin=true;
+
+    const { user } = useContext(AuthContext)
+    const [isAdmin, setIsAdmin] = useState([])
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setIsAdmin(data.admin);
+            });
+    }, []);
+    console.log(isAdmin)
+
+
     return (
         <div>
             <div className="drawer">
@@ -26,15 +40,17 @@ const Dashboard = () => {
                                     isAdmin ?
 
                                         <>
+                                            <li><Link to="/dashboard/users">All Users</Link></li>
+                                            <li><Link to="/dashboard/manageClass">Manage Class</Link></li>
+                                        </>
+
+                                        :
+                                        <>
                                             <li><Link to="/dashboard/selectedClasses">Selected Class</Link></li>
                                             <li><Link to="/dashboard/enrolledClasses">Enrolled Class</Link></li>
                                             <li><Link to="/dashboard/paymentHistory">Payment History</Link></li>
                                         </>
-                                        :
-                                        <>
-                                            <li><Link to="/dashboard/users">All Users</Link></li>
-                                            <li><Link to="/dashboard/manageClass">Manage Class</Link></li>
-                                        </>
+
 
                                 }
                             </ul>
