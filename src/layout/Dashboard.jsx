@@ -9,11 +9,11 @@ const Dashboard = () => {
         fetch(`http://localhost:5000/users/${user.email}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setIsAdmin(data.admin);
             });
     }, []);
-    console.log(isAdmin)
+    // console.log(isAdmin)
 
 
     return (

@@ -6,7 +6,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [hovered, setHovered] = useState(false);
-    console.log(user)
+    // console.log(user)
 
     const handleLogout = () => {
         logOut()
